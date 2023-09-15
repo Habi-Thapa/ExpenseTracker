@@ -2,7 +2,8 @@ import React, { useContext }  from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
 export const TransactionList = () => {
-    const {transactions} = useContext(GlobalContext);
+    const {transactions, deleteTransaction} = useContext(GlobalContext);
+
     console.log(transactions)
   return (
     <>
@@ -10,7 +11,8 @@ export const TransactionList = () => {
     <ul id='list' className='list'>
         {transactions.map(transactions => (
         <li className={transactions.amount < 0 ? 'minus': 'plus'}>
-        {transactions.text} <span>{transactions.amount}</span><button className='delete-btn'>x</button>
+        {transactions.text} <span>{transactions.amount}</span>
+        <button onClick={()=> deleteTransaction(transactions.id)} className='delete-btn' >x</button>
         </li> ))}
     </ul>
     </> 
